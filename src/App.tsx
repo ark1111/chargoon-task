@@ -10,6 +10,7 @@ function App() {
   const [selectedItem, setSelectedItem] = useState(null);
   const [showEdit, setShowEdit] = useState(true);
   const [treeData, setTreeData] = useState([]);
+  const [cutInfo, setCutInfo] = useState<NodeType | null>(null);
 
   const fetchTreeData = async () => {
     const result = await getNodes();
@@ -34,6 +35,26 @@ function App() {
     return newList;
   };
 
+  const pasteNode = (list: NodeType[], destinationNode: NodeType) => {
+    let newList = [...list];
+    for (let i = 0; i < newList.length; i++) {
+      if (newList[i].key === destinationNode.key) {
+        console.log("find destinationNode");
+        let newNode = {
+          ...cutInfo,
+          parentKey: destinationNode.key,
+          hierarchy: [...destinationNode.hierarchy, cutInfo.key],
+        };
+        newList[i].children = [...newList[i].children, newNode];
+        break;
+      } else if (newList[i].children?.length > 0) {
+        let children = pasteNode(newList[i].children, destinationNode);
+        newList[i].children = [...children];
+      }
+    }
+    return newList;
+  };
+
   const handleContextMenuClick = (actionKey: any, node: NodeType) => {
     console.log("handleContextMenuClick");
     console.log(actionKey);
@@ -43,6 +64,26 @@ function App() {
         if (node.children?.length === 0) {
           let newList = deleteNode(treeData, node);
           handleUpdateTree(newList);
+        }
+        break;
+      case "cut":
+        if (node.children?.length === 0) {
+          setCutInfo({ ...node });
+        }
+        break;
+      case "paste":
+        if (
+          cutInfo &&
+          node.key !== cutInfo.key &&
+          node.key !== cutInfo.parentKey
+        ) {
+          let newList = deleteNode(treeData, cutInfo);
+          newList = pasteNode(newList, node);
+          console.log(newList);
+          handleUpdateTree(newList);
+          setCutInfo(null);
+        } else {
+          alert("illegal action!!");
         }
         break;
     }

@@ -24,11 +24,11 @@ function Node({ node, handleContextMenuClick }: Props) {
           title={"افزودن زیرشاخه"}
         />
         <ContextMenuItemEx
-          handleClick={() => handleContextMenuClick("ACTION2", node)}
+          handleClick={() => handleContextMenuClick("cut", node)}
           title={"برش"}
         />
         <ContextMenuItemEx
-          handleClick={() => handleContextMenuClick("ACTION3", node)}
+          handleClick={() => handleContextMenuClick("paste", node)}
           title={"چسباندن"}
         />
         <ContextMenuItemEx
