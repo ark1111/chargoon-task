@@ -1,0 +1,9 @@
+.detail-container {
+  width: 100%;
+  background-color: #fff;
+}
+
+.form-content-active {
+  width: 700px !important;
+  max-width: 100%;
+}

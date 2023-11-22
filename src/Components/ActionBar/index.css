@@ -1,0 +1,11 @@
+.actionbar-button {
+  height: 70%;
+  padding: 0px 30px;
+  border-radius: 10px;
+  background-color: rgb(17, 95, 251);
+  color: #fff;
+  outline: none;
+  border: none;
+  box-shadow: none;
+  cursor: pointer;
+}

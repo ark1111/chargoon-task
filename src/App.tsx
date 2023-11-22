@@ -7,7 +7,7 @@ import { getNodes } from "./transportLayer";
 import { NodeType } from "./types";
 
 function App() {
-  const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedItem, setSelectedItem] = useState<NodeType | null>(null);
   const [showEdit, setShowEdit] = useState(true);
   const [treeData, setTreeData] = useState([]);
   const [cutInfo, setCutInfo] = useState<NodeType | null>(null);
@@ -85,6 +85,9 @@ function App() {
         } else {
           alert("illegal action!!");
         }
+        break;
+      case "newChild":
+        setSelectedItem({ ...node });
         break;
     }
   };

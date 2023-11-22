@@ -1,26 +1,28 @@
-import { Form, Input } from 'antd';
-import React from 'react';
-import UserAutoComplete from './user-autocomplete';
+import { Form, Input } from "antd";
+import React from "react";
+import UserAutoComplete from "./user-autocomplete";
 
 interface Props {
-	initialValue?: any;
+  initialValue?: any;
 }
 
-function BasicInformation({ }: Props) {
-	const [form] = Form.useForm();
+function BasicInformation({}: Props) {
+  const [form] = Form.useForm();
+  console.log("BasicInformation");
+  console.log(form);
 
-	return (
-		<Form form={form}>
-			<Form.Item name="title" label="عنوان" labelCol={{ span: 2 }} >
-				<Input />
-			</Form.Item>
-			<Form.Item name="code" label="کد" labelCol={{ span: 2 }}>
-				<Input />
-			</Form.Item>
-			<Form.Item name="users" label="کاربران" labelCol={{ span: 2 }}>
-				<UserAutoComplete />
-			</Form.Item>
-		</Form>
-	);
+  return (
+    <Form form={form}>
+      <Form.Item name="title" label="عنوان" labelCol={{ span: 2 }}>
+        <Input />
+      </Form.Item>
+      <Form.Item name="code" label="کد" labelCol={{ span: 2 }}>
+        <Input />
+      </Form.Item>
+      <Form.Item name="users" label="کاربران" labelCol={{ span: 2 }}>
+        <UserAutoComplete />
+      </Form.Item>
+    </Form>
+  );
 }
-export default BasicInformation
+export default BasicInformation;
