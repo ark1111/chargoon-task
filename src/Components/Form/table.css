@@ -19,3 +19,58 @@
   justify-content: center;
   border-left: 1px solid #111;
 }
+
+.table-body {
+  width: 100%;
+  border: 1px solid #111;
+}
+
+.table-body-item {
+  width: 100%;
+  height: 30px;
+  display: flex;
+}
+
+.table-body-action {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid #111;
+}
+
+.table-body-default {
+  width: 25%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid #111;
+}
+
+.table-body-code {
+  width: 55%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.table-body-action-back-surface {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  background-color: transparent;
+  top: 0;
+  left: 0;
+}
+
+.table-body-action-icon {
+  cursor: pointer;
+}
+
+.table-body-action-delete {
+  width: 100%;
+  cursor: pointer;
+}
