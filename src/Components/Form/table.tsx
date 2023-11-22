@@ -1,9 +1,11 @@
 import { useState } from "react";
 import "./table.css";
-import { tableMockData } from "./tableMockData";
 import { Popover } from "antd";
 import { TableItemType } from "../../types";
-type Props = {};
+type Props = {
+  data: TableItemType[];
+  setTableData: React.Dispatch<React.SetStateAction<TableItemType[]>>;
+};
 
 const headers = [
   {
@@ -23,8 +25,7 @@ const headers = [
   },
 ];
 
-const Table = (props: Props) => {
-  const [data, setData] = useState<TableItemType[]>(tableMockData);
+const Table = ({ data, setTableData }: Props) => {
   const [openIndex, setOpenIndex] = useState(null);
 
   const handleOpenChange = (index: number) => {
@@ -43,13 +44,13 @@ const Table = (props: Props) => {
         newList[i].isDefault = false;
       }
     }
-    setData(newList);
+    setTableData(newList);
   };
 
-  const deleteTableItem = (id: number) => {
+  const deleteTableItem = (index: number) => {
     let newlist = [...data];
-    newlist = newlist.filter((item) => item.id !== id);
-    setData(newlist);
+    newlist = newlist.filter((item, listIndex) => listIndex !== index);
+    setTableData(newlist);
     setOpenIndex(null);
   };
 
@@ -76,7 +77,7 @@ const Table = (props: Props) => {
                 content={
                   <div
                     className="table-body-action-delete"
-                    onClick={() => deleteTableItem(item.id)}
+                    onClick={() => deleteTableItem(index)}
                   >
                     حذف
                   </div>

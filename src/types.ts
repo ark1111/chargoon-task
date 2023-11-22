@@ -14,7 +14,6 @@ export interface NodeType {
 }
 
 export interface TableItemType {
-  id: number;
   isDefault: boolean;
   code: string;
 }

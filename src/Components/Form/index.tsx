@@ -1,5 +1,5 @@
 import { Input, Tabs } from "antd";
-import React from "react";
+import React, { useState } from "react";
 import ErrorBoundry from "../../ErrorBoundry";
 import ActionBar from "../ActionBar";
 import ArrowDownIcon from "../SvgIcons/arrow-down";
@@ -9,6 +9,8 @@ import BasicInformation from "./basic-information";
 import UsersList from "./user-autocomplete";
 import "./index.css";
 import Table from "./table";
+import { TableItemType } from "../../types";
+import { tableMockData } from "./tableMockData";
 
 interface Props {
   item: any;
@@ -16,6 +18,7 @@ interface Props {
 }
 
 function Form({ item, updateNode }: Props) {
+  const [tableData, setTableData] = useState<TableItemType[]>(tableMockData);
   const handleSave = () => {
     // updateNode("key", {});
   };
@@ -29,7 +32,7 @@ function Form({ item, updateNode }: Props) {
               className={`form-content ${item ? "form-content-active" : ""}`}
             >
               <BasicInformation initialValue={item} />
-              {item && <Table />}
+              {item && <Table data={tableData} setTableData={setTableData}/>}
             </div>
           </Tabs.TabPane>
           <Tabs.TabPane tab="دسترسی ها" key="item-2">
