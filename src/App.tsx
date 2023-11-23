@@ -40,11 +40,13 @@ function App() {
     let newList = [...list];
     for (let i = 0; i < newList.length; i++) {
       if (newList[i].key === destinationNode.key) {
-        console.log("find destinationNode");
         let newNode = {
           ...cutInfo,
           parentKey: destinationNode.key,
-          hierarchy: [...destinationNode.hierarchy, cutInfo.key],
+          hierarchy:
+            destinationNode.hierarchy.length !== 0
+              ? [...destinationNode.hierarchy, cutInfo.key]
+              : [treeData[0].key, cutInfo.key],
         };
         newList[i].children = [...newList[i].children, newNode];
         break;

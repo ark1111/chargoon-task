@@ -26,6 +26,11 @@ function SearchResult({
     hierarchy: string[],
     hierarchyIndex: number
   ): NodePosInfoType => {
+    console.log("findNodePos");
+    console.log(list);
+    console.log(hierarchy);
+    console.log(hierarchyIndex);
+    let newHierarchyIndex = hierarchyIndex + 1;
     if (hierarchy.length > 0) {
       for (let i = 0; i < list.length; i++) {
         if (
@@ -35,9 +40,11 @@ function SearchResult({
           let child = findNodePos(
             list[i].children,
             hierarchy,
-            hierarchyIndex + 1
+            newHierarchyIndex
           );
           let newObj = { title: list[i].title, child };
+          console.log("XXXXXXXXXXXXXXX");
+          console.log(newObj);
           return newObj;
         }
       }
