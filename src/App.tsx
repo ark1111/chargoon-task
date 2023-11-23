@@ -11,6 +11,7 @@ function App() {
   const [showEdit, setShowEdit] = useState(true);
   const [treeData, setTreeData] = useState([]);
   const [cutInfo, setCutInfo] = useState<NodeType | null>(null);
+  const [activeNewChild, setActiveNewChild] = useState<NodeType | null>(null);
 
   const fetchTreeData = async () => {
     const result = await getNodes();
@@ -55,6 +56,27 @@ function App() {
     return newList;
   };
 
+  const findNewChildParent = (list: NodeType[], newNode: NodeType) => {
+    let newList = [...list];
+    for (let i = 0; i < newList.length; i++) {
+      if (newList[i].key === activeNewChild.key) {
+        newList[i].children = [...newList[i].children, newNode];
+        break;
+      } else if (newList[i].children.length > 0) {
+        newList[i].children = findNewChildParent(newList[i].children, newNode);
+      }
+    }
+    return newList;
+  };
+
+  const submitNewchild = (info: any) => {
+    let hierarchy = [...activeNewChild.hierarchy, info.key];
+    let newObj = { ...info, parentKey: activeNewChild.key, hierarchy };
+    let newList = findNewChildParent(treeData, newObj);
+    handleUpdateTree(newList);
+    setActiveNewChild(null);
+  };
+
   const handleContextMenuClick = (actionKey: any, node: NodeType) => {
     console.log("handleContextMenuClick");
     console.log(actionKey);
@@ -87,7 +109,7 @@ function App() {
         }
         break;
       case "newChild":
-        setSelectedItem({ ...node });
+        setActiveNewChild({ ...node });
         break;
     }
   };
@@ -111,7 +133,14 @@ function App() {
         <Sidebar>
           <ExtendedTree handleContextMenuClick={handleContextMenuClick} />
         </Sidebar>
-        {showEdit && <Form item={selectedItem} updateNode={handleUpdateNode} />}
+        {showEdit && (
+          <Form
+            item={selectedItem}
+            updateNode={handleUpdateNode}
+            activeNewChild={activeNewChild}
+            submitNewchild={submitNewchild}
+          />
+        )}
       </div>
     </AppContext.Provider>
   );
