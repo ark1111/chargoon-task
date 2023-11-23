@@ -31,8 +31,6 @@ function Form({ item, updateNode, activeNewChild, submitNewchild }: Props) {
   const handleSave = () => {
     // updateNode("key", {});
     let newObj = { ...newChildInfo, users: tableData };
-    console.log("++++++++ handleSave ++++++++");
-    console.log(newObj);
     submitNewchild(newObj);
   };
 

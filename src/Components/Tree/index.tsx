@@ -25,9 +25,6 @@ const TreeExtended: React.FC<Props> = ({
   const [searchResult, setSearchResult] = useState([]);
 
   const onExpand = (newExpandedKeys: any[]) => {
-    console.log(
-      "---------------onExpand--------------------------------------------"
-    );
     setExpandedKeys(newExpandedKeys);
     setAutoExpandParent(false);
   };
@@ -48,8 +45,6 @@ const TreeExtended: React.FC<Props> = ({
 
   const handleSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let results = searchHandler(treeData, e.target.value);
-    console.log("results");
-    console.log(results);
     if (e.target.value !== "") {
       setSearchResult(results);
     } else {

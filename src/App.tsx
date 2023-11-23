@@ -81,9 +81,6 @@ function App() {
   };
 
   const handleContextMenuClick = (actionKey: any, node: NodeType) => {
-    console.log("handleContextMenuClick");
-    console.log(actionKey);
-    console.log(node);
     switch (actionKey) {
       case "delete":
         if (node.children?.length === 0) {
@@ -104,7 +101,6 @@ function App() {
         ) {
           let newList = deleteNode(treeData, cutInfo);
           newList = pasteNode(newList, node);
-          console.log(newList);
           handleUpdateTree(newList);
           setCutInfo(null);
         } else {
@@ -119,7 +115,6 @@ function App() {
   };
 
   const handleUpdateTree = (nodes: NodeType[]) => {
-    console.log("handleUpdateTree*************************");
     let newNodes = [...nodes];
     setTreeData(newNodes);
   };
