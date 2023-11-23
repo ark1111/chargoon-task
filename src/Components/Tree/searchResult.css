@@ -37,3 +37,22 @@
 .search-result-item-icon {
   cursor: pointer;
 }
+
+.node-pos-info-item {
+  width: 100%;
+  padding: 10px 0;
+}
+
+.node-pos-info-item-child {
+  padding-right: 20px;
+}
+
+.search-result-popover-back-surface {
+  width: 100vw;
+  height: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  background-color: transparent;
+}

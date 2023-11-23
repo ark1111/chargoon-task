@@ -17,3 +17,8 @@ export interface TableItemType {
   isDefault: boolean;
   code: string;
 }
+
+export interface NodePosInfoType {
+  title: string;
+  child: NodePosInfoType | null;
+}
