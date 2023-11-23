@@ -37,7 +37,7 @@ const TreeExtended: React.FC<Props> = ({
     for (let i = 0; i < list.length; i++) {
       if (list[i].title.includes(query)) {
         newList.push(list[i]);
-      }  
+      }
       if (list[i].children.length > 0) {
         let otherResults = searchHandler(list[i].children, query);
         newList = [...newList, ...otherResults];
@@ -50,7 +50,11 @@ const TreeExtended: React.FC<Props> = ({
     let results = searchHandler(treeData, e.target.value);
     console.log("results");
     console.log(results);
-    setSearchResult(results);
+    if (e.target.value !== "") {
+      setSearchResult(results);
+    } else {
+      setSearchResult([]);
+    }
   };
 
   const handlePressEnter = () => {
@@ -82,7 +86,11 @@ const TreeExtended: React.FC<Props> = ({
         treeData={treeData}
         titleRender={titleRenderer}
       />
-      {searchResultVisible && <SearchResult items={searchResult} />}
+      <SearchResult
+        items={searchResult}
+        searchResultVisible={searchResultVisible}
+        setSearchResultVisible={setSearchResultVisible}
+      />
     </div>
   );
 };
