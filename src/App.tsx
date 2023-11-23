@@ -75,6 +75,7 @@ function App() {
     let newList = findNewChildParent(treeData, newObj);
     handleUpdateTree(newList);
     setActiveNewChild(null);
+    setSelectedItem(newObj);
   };
 
   const handleContextMenuClick = (actionKey: any, node: NodeType) => {
@@ -110,6 +111,7 @@ function App() {
         break;
       case "newChild":
         setActiveNewChild({ ...node });
+        setSelectedItem(null);
         break;
     }
   };
@@ -131,7 +133,10 @@ function App() {
     >
       <div className="App">
         <Sidebar>
-          <ExtendedTree handleContextMenuClick={handleContextMenuClick} />
+          <ExtendedTree
+            handleContextMenuClick={handleContextMenuClick}
+            setSelectedItem={setSelectedItem}
+          />
         </Sidebar>
         {showEdit && (
           <Form

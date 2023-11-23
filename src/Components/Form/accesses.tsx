@@ -26,6 +26,7 @@ interface Props {
 
 function Accesses({ initialValue, setNewChildInfo, newChildInfo }: Props) {
   const [options, setOptions] = useState([]);
+  const [values, setValues] = useState([]);
   console.log("Accesses");
   console.log(options);
 
@@ -38,11 +39,27 @@ function Accesses({ initialValue, setNewChildInfo, newChildInfo }: Props) {
     fetchAccessList();
   }, []);
 
+  useEffect(() => {
+    if (initialValue) {
+      setValues([...initialValue]);
+    } else {
+      setValues([]);
+    }
+  }, [initialValue]);
+
   const handleOnChange = (checkedValues: CheckboxValueType[]) => {
-    console.log("checked = ", checkedValues);
-    setNewChildInfo({ ...newChildInfo, accesses: checkedValues });
+    if (!initialValue) {
+      setNewChildInfo({ ...newChildInfo, accesses: checkedValues });
+      setValues(checkedValues);
+    }
   };
 
-  return <Checkbox.Group options={options as any} onChange={handleOnChange} />;
+  return (
+    <Checkbox.Group
+      options={options as any}
+      onChange={handleOnChange}
+      value={values}
+    />
+  );
 }
 export default Accesses;

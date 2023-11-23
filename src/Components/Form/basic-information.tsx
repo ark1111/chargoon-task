@@ -2,6 +2,7 @@ import { Form, Input } from "antd";
 import React, { useEffect } from "react";
 import UserAutoComplete from "./user-autocomplete";
 import { TableItemType } from "../../types";
+import { FormInstance } from "antd/es/form/Form";
 
 interface Props {
   initialValue?: any;
@@ -35,12 +36,26 @@ function BasicInformation({
   const codeValue = Form.useWatch("code", form);
 
   useEffect(() => {
+    if (initialValue) {
+      form.setFieldsValue({
+        title: initialValue.title,
+        code: initialValue.key,
+      });
+    } else {
+      form.setFieldsValue({
+        title: "",
+        code: "",
+      });
+    }
+  }, [initialValue]);
+
+  useEffect(() => {
     console.log({ titleValue, codeValue });
     setNewChildInfo({ ...newChildInfo, title: titleValue, key: codeValue });
   }, [titleValue, codeValue]);
 
   return (
-    <Form form={form}>
+    <Form form={form} disabled={initialValue ? true : false}>
       <Form.Item name="title" label="عنوان" labelCol={{ span: 2 }}>
         <Input />
       </Form.Item>

@@ -60,7 +60,7 @@ function Form({ item, updateNode, activeNewChild, submitNewchild }: Props) {
             <div className="form-content">
               <ErrorBoundry>
                 <Accesses
-                  initialValue={item}
+                  initialValue={item?.accesses}
                   setNewChildInfo={setNewChildInfo}
                   newChildInfo={newChildInfo}
                 />

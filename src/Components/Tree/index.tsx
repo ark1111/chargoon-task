@@ -10,9 +10,10 @@ const { Search } = Input;
 
 interface Props {
   handleContextMenuClick: (key: string,node:NodeType) => void;
+  setSelectedItem : (node:NodeType) => void
 }
 
-const TreeExtended: React.FC<Props> = ({ handleContextMenuClick }) => {
+const TreeExtended: React.FC<Props> = ({ handleContextMenuClick,setSelectedItem }) => {
   const [expandedKeys, setExpandedKeys] = useState<React.Key[]>([]);
   const [autoExpandParent, setAutoExpandParent] = useState(true);
   const searchedKeyword = useRef();
@@ -34,7 +35,7 @@ const TreeExtended: React.FC<Props> = ({ handleContextMenuClick }) => {
   }
 
   const titleRenderer = (node: NodeType) => {
-    return <Node node={node} handleContextMenuClick={handleContextMenuClick} />
+    return <Node node={node} handleContextMenuClick={handleContextMenuClick} setSelectedItem={setSelectedItem}/>
   }
 
   return (
