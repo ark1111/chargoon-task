@@ -30,7 +30,6 @@ function BasicInformation({
   newChildInfo,
 }: Props) {
   const [form] = Form.useForm();
-  console.log("BasicInformation");
 
   const titleValue = Form.useWatch("title", form);
   const codeValue = Form.useWatch("code", form);
@@ -50,7 +49,6 @@ function BasicInformation({
   }, [initialValue]);
 
   useEffect(() => {
-    console.log({ titleValue, codeValue });
     setNewChildInfo({ ...newChildInfo, title: titleValue, key: codeValue });
   }, [titleValue, codeValue]);
 
