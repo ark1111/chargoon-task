@@ -1,0 +1,15 @@
+.search-result{
+    width: 100%;
+}
+
+.search-result-item {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.search-result-item-icon{
+    cursor: pointer;
+}
